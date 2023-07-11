@@ -1,0 +1,38 @@
+VOCABULARY
+1.DECODE
+2.conditional expresion
+3.CASE
+
+TRY IT/SOLVE IT
+1.
+SELECT title,
+CASE
+WHEN TO_NUMBER(REPLACE(duration, 'min', '')) = 2 THEN 'Shortest'
+WHEN TO_NUMBER(REPLACE(duration, 'min', '')) = 10 THEN 'Longest'
+ELSE NVL(duration,'0 min')
+END
+AS "Play Times"
+FROM d_songs
+
+2.
+SELECT department_id , last_name,  salary,
+CASE department_id
+WHEN 10 THEN 1.25*salary
+WHEN 90 THEN 1.5*salary
+WHEN 130 THEN 1.75*salary
+ELSE salary
+END
+as "New Salary"
+FROM employees
+
+3.
+
+SELECT first_name, last_name, manager_id, commission_pct,
+CASE
+WHEN commission_pct IS NULL and manager_id IS NULL THEN 99999
+WHEN manager_id IS NULL THEN commission_pct
+ELSE manager_id
+END
+as "Review"
+FROM employees
+WHERE department_id in (80, 90);

@@ -1,0 +1,27 @@
+VOCABULARY
+1.FULL OUTER JOIN
+2.OUTER JOIN
+3. LEFT OUTER JOIN
+4.RIGHT OUTER JOIN
+5.INNER JOIN
+
+TRY IT/SOLVE IT
+1.
+SELECT  e.first_name "First Name", e.last_name "Last Name" , dp.department_name  "Department Name"
+FROM  employees e LEFT OUTER JOIN departments dp ON e.department_id = dp.department_id
+
+2.
+SELECT  e.first_name "First Name", e.last_name "Last Name" , dp.department_name  "Department Name"
+FROM  employees e RIGHT OUTER JOIN departments dp ON e.department_id = dp.department_id
+
+3.
+SELECT  e.first_name "First Name", e.last_name "Last Name" , dp.department_name  "Department Name"
+FROM  employees e FULL OUTER JOIN departments dp ON e.department_id = dp.department_id
+
+4.
+SELECT c.first_name, c.last_name, e.event_date, e.description
+FROM  d_clients c LEFT OUTER JOIN d_events e ON c.client_number = e.client_number
+
+5.
+SELECT f_shifts.description "shift description", f_shift_assignments.shift_assign_date AS "shift assignment date"
+FROM  f_shifts LEFT OUTER JOIN f_shift_assignments ON f_shifts.code = f_shift_assignments.code

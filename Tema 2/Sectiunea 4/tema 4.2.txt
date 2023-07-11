@@ -1,0 +1,44 @@
+VOCABULARY
+1.TRUNC
+2.number function
+3.MOD
+4.ROUND
+
+
+TRY IT/SOLVE IT
+1.
+SELECT last_name, salary, ROUND(salary/1.55,2) AS "Calculated Salary"
+FROM employees
+WHERE employee_id BETWEEN 100 AND 102
+
+2.
+SELECT last_name, salary, TRUNC(salary * 1.05333,2) AS "Raised Salary"
+FROM employees
+WHERE department_id = 80
+
+3.
+
+
+4.
+SELECT ROUND( 845.553 , 1)
+FROM dual
+
+SELECT ROUND( 30695.348  , 2)
+FROM dual
+
+SELECT ROUND( 30695.348  , -2)
+FROM dual
+
+SELECT TRUNC( 2.3454   , 1)
+FROM dual
+
+5.
+SELECT last_name, salary
+FROM employees
+WHERE MOD(salary, 3) = 0
+
+6.
+SELECT MOD(34, 8) as example
+FROM dual
+
+7.

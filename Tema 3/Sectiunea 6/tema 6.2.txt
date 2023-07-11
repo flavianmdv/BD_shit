@@ -1,0 +1,52 @@
+VOCABULARY
+1.ON clause
+2.USING clause
+
+TRY IT/SOLVE IT
+1.
+SELECT department_id,department_name, location_id, city
+FROM departments JOIN locations USING (location_id)
+WHERE location_id = 1400
+
+2.
+SELECT song_id, cd_number, title, comments
+FROM d_cds JOIN d_track_listings USING (cd_number)  JOIN d_play_list_items USING (song_id)
+
+3.
+SELECT city, department_name, location_id, department_id
+FROM departments JOIN locations USING (location_id)
+WHERE department_id in (10, 20 , 30) AND city = 'Seattle'
+
+4.
+SELECT country_name, region_id, region_name
+FROM countries  JOIN regions USING(region_id)
+WHERE region_name = 'Americas'
+
+5.
+SELECT  first_name, last_name, hire_date, job_id, job_title, max_salary
+FROM employees  JOIN jobs USING (job_id)
+WHERE max_salary > 12000
+
+6.
+SELECT  job_title,  first_name,  last_name, email
+FROM employees JOIN jobs USING(job_id)
+WHERE  job_title = 'Stock Clerk' 
+
+7.
+SELECT e.employee_id AS "Employee ID", e.first_name AS "First Name", e.last_name "Last Name", e.manager_id "Manager ID", m.first_name "Manager First Name", m.last_name "Manager Last Name"
+FROM  employees e JOIN employees m ON  (e.manager_id = m.employee_id)
+
+8.
+SELECT dp.location_id, loc.city, dp.department_name
+FROM departments dp JOIN locations  loc ON dp.location_id = loc.location_id   JOIN  countries ct ON loc.country_id = ct.country_id
+WHERE ct.country_name = 'Canada'
+
+9.
+SELECT e.manager_id "Employee's Manager ID", e.department_id "Department ID", dp.department_name  "Department Name", e.first_name "First Name", e.last_name "Last Name"
+FROM  employees e JOIN departments dp ON e.department_id = dp.department_id
+WHERE e.department_id in (80, 90, 110, 190)
+
+10.
+SELECT e.employee_id "Employee ID", e.last_name "Last Name" , e.department_id "Department ID", dp.department_name  "Department Name", e.hire_date "Hire Date"
+FROM  employees e JOIN departments dp ON e.department_id = dp.department_id
+WHERE e.hire_date = TO_DATE('June 7, 1994', 'fmMonth DD, YYYY')

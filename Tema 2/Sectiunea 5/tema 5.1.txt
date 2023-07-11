@@ -1,0 +1,71 @@
+VOCABULARY
+1.CHAR
+2.fm
+3.conversion function
+4.NUMBER
+5.VARCHAR2
+6.DATE
+7.TO_CHAR
+8.RR
+9.TO_NUMBER
+10.DD
+11.TO_DATE
+
+TRY IT/SOLVE IT
+1.SELECT last_name,TO_CHAR( birthdate, 'Month DD, YYYY') as birthdate
+FROM f_staffs
+
+2.
+SELECT  TO_DATE('January 3, 04', 'Month DD YY') AS "Conversie"
+FROM dual
+
+3.
+SELECT 'The promotion began on the ' || TO_CHAR(start_date, 'ddthsp "of" Month YYYY') as output
+FROM f_promotional_menus
+WHERE code = 110
+
+4.
+SELECT 'Today is the ' || TO_CHAR(SYSDATE,'fmDdthsp "of"  Month, Year') AS "Astazi"
+FROM dual
+
+5.
+SELECT id, first_name ||' '||last_name as  name, TO_CHAR( salary, '$999999.99') as salary
+FROM f_staffs
+
+6.
+SELECT first_name, last_name, TO_CHAR( salary, '$999999.99') as "Old Salary", TO_CHAR( salary + 2000 , '$9999999.99') as "New Salary"
+FROM employees
+WHERE first_name = 'Ellen'  AND last_name = 'Abel'
+
+7.
+SELECT TO_CHAR(start_date, 'fmdd-Mon-YYYY (Day)') AS "Start Date"
+FROM f_promotional_menus
+WHERE  code = 110
+
+8.
+SELECT TO_CHAR(TO_DATE('25-Dec-2004', 'dd-Mon-yyyy'), 'Month ddth, yyyy') AS "Change Date"
+FROM dual
+
+SELECT TO_CHAR(TO_DATE('25-Dec-2004', 'dd-Mon-yyyy'), 'MONTH DDth, yyyy') AS "Change Date"
+FROM dual
+
+SELECT TO_CHAR(TO_DATE('25-Dec-2004', 'dd-Mon-yyyy'), 'fmddth month, yyyy') AS "Change Date"
+FROM dual
+
+9.
+SELECT code, TO_CHAR(low_range,'$999999.99') as low_range, TO_CHAR(high_range,'$999999.99') AS high_range
+FROM d_packages
+
+10.
+SELECT TO_DATE('JUNE192004','fxMONTHddyyyy') AS "Changed Date"
+FROM dual
+
+11.
+1). Implicit conversion:
+SELECT SYSDATE
+FROM dual
+
+2). Explicit conversion:
+SELECT TO_CHAR(SYSDATE, 'MONTH DDth, yyyy')
+FROM dual
+

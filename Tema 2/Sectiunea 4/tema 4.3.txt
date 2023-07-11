@@ -1,0 +1,118 @@
+VOCABULARY
+1.SYSDATE
+2.ADD_MONTHS
+3.LAST_DAY
+4.NEXT_DAY
+5.MONTHS_BETWEEN
+
+TRY IT/SOLVE IT
+1.SELECT name, event_date, ROUND(MONTHS_BETWEEN(SYSDATE, event_date)) as "Number of Months"
+FROM d_events
+WHERE name = 'Vigil wedding'
+
+2.
+
+3.
+
+4.
+SELECT ROUND(SYSDATE, 'Month') as "Nearest first day of month", ROUND(SYSDATE, 'Year') as "Nearest first day of Year", TRUNC(SYSDATE, 'Month') as "Current month's 1st day", TRUNC(SYSDATE, 'Year') as "current year's 1st day"
+FROM dual
+
+5.
+SELECT LAST_DAY( '01-Jun-2005')
+FROM dual
+
+6.
+SELECT first_name, last_name , ROUND(MONTHS_BETWEEN(SYSDATE, birthdate)/12) "No of Years"
+FROM f_staffs
+WHERE first_name || ' ' || last_name = 'Bob Miller'
+
+7.
+SELECT ADD_MONTHS(SYSDATE, 6)
+FROM dual
+
+8.
+SELECT LAST_DAY(SYSDATE) AS "Deadline"
+FROM dual
+
+9.
+SELECT TRUNC(MONTHS_BETWEEN('01-Jan-2023', '10-Jul-2022'))
+FROM dual
+
+10.
+SELECT NEXT_DAY('10-Jul-2022', 'Friday')
+FROM dual
+
+11.
+MONTHS_BETWEEN
+
+12. ADD_MONTHS
+
+13.
+
+Exercises
+
+1.SELECT  ROUND(86.678, 2)
+FROM dual
+
+2.
+SELECT  UPPER(title) "DJs on Demand Collections"
+FROM d_cds
+WHERE cd_number IN( 90, 91)
+
+3.
+SELECT LOWER(last_name) || UPPER(SUBSTR(first_name, 1,1) ) "User Passwords"
+FROM d_partners
+
+4.
+SELECT UPPER(REPLACE( 'It''s a small world' , 'It''s a small', 'hello' )) as converted
+FROM dual
+
+5.
+SELECT    REPLACE('fiddledeedum', 'dum') ||  REPLACE('fiddledeedee', 'fiddle') AS "Non-sense"
+FROM dual
+
+6.
+SELECT    REPLACE('Mississippi ', 'i', '$') AS "Converted"
+FROM dual
+
+7.
+SELECT    TRUNC(5332.342, -2) as "Truncated"
+FROM dual
+
+8.
+SELECT    TRUNC(3.14159, 2) as "Truncated"
+FROM dual
+
+9.
+SELECT    TRUNC(73.892, 1) as "Truncated"
+FROM dual
+
+10.
+SELECT    NEXT_DAY(ADD_MONTHS(SYSDATE, 6),'Friday') AS "Future"
+FROM dual
+
+11.
+SELECT   ADD_MONTHS(SYSDATE, 120) AS "Future"
+FROM dual
+
+12.
+SELECT LAST_DAY( '01-Feb-2008' ) AS "Future"
+FROM dual
+
+13.
+
+SELECT description
+FROM d_themes
+WHERE description like '%ie%'
+
+14.
+SELECT title, year
+FROM d_cds
+WHERE year > 2000 AND year < 2003
+
+15.
+SELECT employee_id, hire_date
+FROM employees
+WHERE hire_date BETWEEN  '01-Jan-1997' AND SYSDATE
+ORDER BY hire_date DESC	

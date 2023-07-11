@@ -1,0 +1,39 @@
+VOCABULARY
+1.NVL
+2.COALESCE
+3.NVL2
+4.NULLIF
+
+TRY IT/SOLVE IT
+1.
+SELECT name, start_date, end_date, NVL2(end_date, 'end in two weeks', TO_CHAR( SYSDATE, 'DD-Mon-YYYY')) AS "NVL2"
+FROM f_promotional_menus
+
+2.
+SELECT last_name, NVL(overtime_rate,0) as "Overtime Status"
+FROM f_staffs
+
+3.
+SELECT last_name, NVL(overtime_rate,5) AS "Overtime Status"
+FROM f_staffs
+
+4.
+SELECT last_name,  NVL(manager_id,9999) AS "Manager_id"
+FROM f_staffs
+
+5.c
+
+6.last_name
+
+7.a)
+SELECT first_name , last_name, TO_CHAR(hire_date, 'Month') as "month of hire"
+FROM employees
+
+b)
+SELECT first_name, last_name, NULLIF( TO_CHAR(hire_date, 'Month'), 'September') as "month of hire"
+FROM employees
+
+
+8.
+SELECT first_name, NVL(specialty, 'No Specialty') as specialty
+FROM d_partners
