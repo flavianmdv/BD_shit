@@ -1,0 +1,49 @@
+VOCABULARY
+1.HAVING
+2.GROUP BY
+
+TRY IT/SOLVE IT
+1.
+a.T
+b.F
+c.F
+d.F
+e.F
+
+2.
+a.
+SELECT manager_id,AVG(salary)
+FROM employees
+GROUP BY manager_id
+HAVING AVG(salary) <16000
+
+b.
+
+SELECT COUNT(*)
+FROM d_cds
+WHERE cd_number < 93
+
+c.
+d.
+
+3.
+SELECT track, MAX(song_id)
+FROM d_track_listings
+WHERE track IN ( 1, 2, 3)
+GROUP BY track
+
+4.
+a.T
+b.F
+c.F
+
+5.
+SELECT MAX(AVG(salary)), MIN(AVG(salary))
+FROM employees
+GROUP BY department_id
+
+6.
+SELECT AVG(MAX(salary))
+FROM employees
+GROUP BY department_id
+

@@ -1,0 +1,23 @@
+13-1
+
+Vocabulary
+-Data Dictionary
+-Schema
+-DEAFULT
+-TABLE
+-CREATE TABLE
+
+Try It / Solve It
+2. CREATE TABLE  graduate_candidates
+   ( student_id NUMBER(6,0),
+     last_name VARCHAR2(75),
+     first_name VARCHAR2(75),
+     credits NUMBER(3,0))
+
+3. DESCRIBE graduate_candidates;
+
+4. CREATE TABLE hoban_table
+AS ( SELECT * FROM graduate_candidates);
+
+5. INSERT INTO hoban_table (student_id, last_name, first_name, credits, graduation_date)
+Values(99,'Frincu','Ioan-Cristian',30,NULL);

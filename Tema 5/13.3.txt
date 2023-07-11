@@ -1,0 +1,135 @@
+Try It / Solve It
+
+1.
+Pentru a se putea modifica anumite date in cazul unei schimbari sau a unei eventuale greseli
+
+2.
+a.
+CREATE TABLE  artists
+(artist_id NUMBER(5,0),
+first_name VARCHAR2(25),
+last_name VARCHAR2(30),
+band_name VARCHAR2(30),
+email VARCHAR2(75),
+hr_rate NUMBER(8,2),
+song_id NUMBER(5,0));
+
+b.
+
+c.
+INSERT INTO artists (artist_id, first_name, last_name, band_name, email, hr_rate, song_id)
+VALUES(2,'David','Gray','david''s band','some.email@somedomain.com','999999.99',NULL);
+
+SELECT * FROM artists
+
+d.
+ALTER TABLE artists
+ADD (specialty VARCHAR2(100), college VARCHAR2(100));
+
+ALTER TABLE artists
+MODIFY (specialty VARCHAR2(99), college VARCHAR2(98));
+
+ALTER TABLE artists
+DROP COLUMN specialty;
+
+ALTER TABLE artists
+RENAME COLUMN college to university;
+
+ALTER TABLE artists
+  RENAME TO artists_new_name;
+
+ALTER TABLE artists_new_name
+MODIFY (university VARCHAR2(98) DEFAULT 'Great College');
+
+ALTER TABLE artists_new_name
+SET UNUSED (university);
+
+ALTER TABLE artists_new_name
+DROP UNUSED COLUMNS;
+
+RENAME artists_new_name TO artists_new2;
+
+TRUNCATE TABLE artists_new2;
+SELECT * FROM artists_new2;
+
+3.
+ALTER TABLE o_employees
+ADD ("Termination" VARCHAR2(100)  DEFAULT  TO_CHAR(SYSDATE,'Month ddth, YYYY') );
+
+4.
+ALTER TABLE o_employees
+ADD (start_date TIMESTAMP WITH LOCAL TIME ZONE);
+
+5.
+TRUNCATE TABLE o_jobs;
+
+6.
+DROP sterge definirea tabelului
+TRUNCATE sterge randurile si elibereaza spatiul fara posibilitatea de a recupera informatia stearsa
+DELETE sterge randurile dar nu elibereaza spatiul.
+
+8. 
+COMMENT ON TABLE o_jobs IS 'New job description added';
+
+SELECT table_name, comments
+FROM user_tab_comments WHERE LOWER(table_name) = 'o_jobs'
+
+9.
+ALTER TABLE o_jobs
+RENAME TO o_job_description;
+
+
+10. 
+a)
+CREATE TABLE copy_f_staffs
+AS ( SELECT * FROM f_staffs);
+
+b)
+DESC copy_f_staffs;
+
+c)
+DROP TABLE copy_f_staffs;
+
+d)
+SELECT * FROM copy_f_staffs;
+
+e) 
+
+f) 
+
+
+g)
+
+
+h)
+DESCRIBE copy_f_staffs;
+
+11. 
+a) 
+SELECT * FROM copy_f_staffs;
+
+b)
+UPDATE copy_f_staffs
+SET salary = 12
+WHERE first_name = 'Sue' AND last_name = 'Doe';
+
+c)
+SELECT * FROM copy_f_staffs;
+
+d)
+UPDATE copy_f_staffs
+SET salary = 2
+WHERE first_name = 'Sue' AND last_name = 'Doe';
+
+e)
+SELECT * FROM copy_f_staffs;
+
+
+
+
+
+
+
+
+
+

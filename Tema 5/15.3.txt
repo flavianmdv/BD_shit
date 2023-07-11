@@ -1,0 +1,31 @@
+Vocabulary
+1. TOP-N Analysis
+2. DROP
+3. INLINE VIEW
+
+Try It / Solve It
+1. 
+CREATE OR REPLACE VIEW view_copy_d_songs  AS
+SELECT title, artist
+FROM copy_d_songs;
+
+SELECT * FROM view_copy_d_songs;
+
+2.
+DROP VIEW view_copy_d_songs;
+SELECT * FROM view_copy_d_songs;
+
+ORA-00933: SQL command not properly ended
+
+3.
+SELECT * FROM
+(SELECT last_name, salary FROM employees ORDER BY salary  DESC)
+WHERE ROWNUM <= 3;
+
+4.
+
+5.
+SELECT ROWNUM,last_name, salary
+FROM
+(SELECT * FROM f_staffs ORDER BY SALARY);
+

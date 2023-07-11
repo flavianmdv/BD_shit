@@ -1,0 +1,86 @@
+VOCABULARY
+1.AVG
+2.COUNT
+3.STDDEV
+4.orice group function
+5.MIN
+6.VARIANCE
+7.SUM
+8.MAX
+9.
+
+TRY IT/SOLVE IT
+1.
+avg-face media
+SELECT AVG(salary)
+FROM employees
+
+count-numara randurile fara valori nule
+
+SELECT COUNT(salary)
+FROM employees
+
+MAX- face maximul
+SELECT MAX(salary)
+FROM employees
+
+MIN-face minimul
+SELECT MIN(salary)
+FROM employees
+
+SELECT VARIANCE(salary)
+FROM employees
+
+SELECT STDDEV(salary)
+FROM employees
+
+2.
+SELECT ROUND(AVG(cost),2) as "Average Cost"
+FROM d_events
+
+3.
+SELECT ROUND(AVG(salary),2) AS "Average Salary"
+FROM f_staffs
+WHERE manager_id = 19
+
+4.
+SELECT ROUND(SUM(salary),2) AS "Average Salary"
+FROM f_staffs
+WHERE id in (12, 19)
+
+5.
+SELECT MIN(salary) "lowest salary", MAX(hire_date) "most recent hire date", MIN(last_name) "top last name", MAX(last_name) "bottom last name"
+FROM employees
+WHERE department_id in (50, 60)
+
+6.
+1
+
+7.
+SELECT AVG(NVL(salary, hourly_rate* hrs_worked_in_yr ))
+This way the null fields beings ignored will also be counted in.
+
+8.
+March 30, 1969
+
+9.
+SELECT   AVG(order_total) AS "Average"
+FROM f_orders
+WHERE order_date BETWEEN TO_DATE('January 1, 2002', 'fmMonth DD, YYYY') AND TO_DATE('December 21, 2002', 'fmMonth DD, YYYY')
+
+10.
+SELECT MAX(hire_date) as "the last"
+FROM employees
+29-Jan-2000
+
+11.
+sum
+
+12.
+a.F
+b.T
+c.F
+d.F
+e.F
+f.F
+g.T

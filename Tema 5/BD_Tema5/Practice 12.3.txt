@@ -1,0 +1,61 @@
+Practice 12-3
+
+Try It / Solve It
+1. 
+Cand nu exista valoare data in momentul crearii unui rand si dorim sa avem in acest caz o valoare predefinita
+2. 
+CREATE TABLE copy_f_promotional_menus
+AS (SELECT * FROM f_promotional_menus)
+
+ALTER TABLE copy_f_promotional_menus
+MODIFY(start_date DATE DEFAULT SYSDATE)
+
+INSERT INTO copy_f_promotional_menus(code,name,start_date,end_date,give_away)
+VALUES('120','New Customer',DEFAULT,TO_DATE('01-Jun-2005','dd-Mon-yyyy'),' 10% discount coupon');
+
+3. 
+CREATE TABLE manager_copy_d_cds
+AS ( SELECT * FROM d_cds);
+
+INSERT INTO manager_copy_d_cds(cd_number,title,producer,year)
+VALUES(20,'Hello World Here I Am','Middle Earth Records','1998');
+
+SELECT * FROM manager_copy_d_cds ;
+
+MERGE INTO manager_copy_d_cds tgt USING d_cds src
+ON (src.cd_number = tgt.cd_number)
+WHEN MATCHED THEN UPDATE
+SET  tgt.title = src.title, tgt.producer = src.producer, tgt.year = src.year
+WHEN NOT MATCHED THEN INSERT
+VALUES (src.cd_number, src.title, src.producer, src.year);
+
+SELECT * FROM manager_copy_d_cds ;
+
+4. 
+CREATE TABLE sal_history (employee_id, hire_date, salary)
+AS SELECT employee_id, hire_date, salary
+ FROM employees
+ WHERE 1=2;
+
+CREATE TABLE mgr_history (employee_id, manager_id, salary)
+AS SELECT employee_id, manager_id, salary
+ FROM employees
+ WHERE 1=2;
+
+CREATE TABLE special_sal (employee_id, salary)
+AS SELECT employee_id, salary
+ FROM employees
+ WHERE 1=2;
+
+INSERT FIRST
+WHEN salary > 20000 THEN
+INTO special_sal
+VALUES(employee_id, salary)
+ELSE
+INTO sal_history
+VALUES(employee_id, hire_date, salary)
+INTO mgr_history
+VALUES(employee_id, manager_id, salary)
+
+SELECT employee_id, salary, hire_date, manager_id
+FROM employees;

@@ -1,0 +1,59 @@
+VOCABULARY
+1.outer query
+2.
+3.subquery
+4.
+5.
+6.
+7.inner query
+
+TRY IT/SOLVE IT
+1.To find the intermediate information we need to extract information we want
+
+2.
+An inner query that is nested within an outer query
+
+3.
+SELECT song_id
+FROM d_play_list_items
+WHERE event_id IN(SELECT event_id FROM d_play_list_items WHERE song_id =45)
+
+4.
+SELECT id, name
+FROM d_events
+WHERE cost > (SELECT cost FROM d_events WHERE id = 100)
+
+5.
+SELECT track
+FROM d_track_listings
+WHERE cd_number = (SELECT cd_number FROM d_cds WHERE title = 'Party Music for All Occasions')
+
+6.
+SELECT id, name
+FROM d_events
+WHERE theme_code = (SELECT code FROM d_themes WHERE description = 'Tropical')
+
+7.
+SELECT first_name,last_name
+FROM f_staffs
+WHERE salary > (SELECT salary FROM f_staffs WHERE id = 12)
+
+8.
+SELECT first_name,last_name
+FROM f_staffs
+WHERE staff_type != (SELECT staff_type FROM f_staffs WHERE first_name = 'Bob' AND last_name ='Miller')
+
+9.
+SELECT first_name,last_name
+FROM employees
+WHERE department_id = (SELECT department_id FROM departments WHERE department_name = 'IT')
+
+10.
+SELECT department_name
+FROM departments
+WHERE location_id = ( SELECT location_id FROM locations WHERE city = 'Seattle')
+
+11
+a.T
+b.T
+c.F

@@ -1,0 +1,68 @@
+
+Vocabulary
+-ROWNUM
+-WITH CHECK OPTION
+-WITH READ ONLY
+
+
+Try It / Solve It
+1.
+SELECT owner, table_name, column_name, updatable,insertable, deletable
+FROM user_updatable_columns WHERE LOWER(table_name) = 'copy_d_songs';
+
+SELECT owner, table_name, column_name, updatable,insertable, deletable
+FROM user_updatable_columns WHERE LOWER(table_name) = 'copy_d_events';
+
+SELECT owner, table_name, column_name, updatable,insertable, deletable
+FROM user_updatable_columns WHERE LOWER(table_name) = 'copy_d_cds';
+
+SELECT owner, table_name, column_name, updatable,insertable, deletable
+FROM user_updatable_columns WHERE LOWER(table_name) = 'copy_d_clients';
+
+2.
+CREATE OR REPLACE VIEW view_copy_d_songs  AS
+SELECT *
+FROM copy_d_songs;
+
+SELECT * FROM view_copy_d_songs;
+
+3.
+INSERT INTO view_copy_d_songs(id,title,duration,artist,type_code)
+VALUES(88,'Mello Jello','2 min','The What',4);
+
+4.
+CREATE OR REPLACE VIEW read_copy_d_cds  AS
+SELECT *
+FROM copy_d_cds
+WHERE year = '2000'
+WITH READ ONLY ;
+
+
+SELECT * FROM read_copy_d_cds;
+
+5.
+
+6.
+CREATE OR REPLACE VIEW read_copy_d_cds  AS
+SELECT *
+FROM copy_d_cds
+WHERE year = '2000'
+WITH CHECK OPTION CONSTRAINT ck_read_copy_d_cds;
+
+7.
+DELETE FROM read_copy_d_cds
+WHERE year = '2000';
+
+8.
+DELETE FROM read_copy_d_cds
+WHERE cd_number = 90;
+
+9.DELETE FROM read_copy_d_cds
+WHERE cd_number = 90;
+10
+11
+12
+13
+
+
+

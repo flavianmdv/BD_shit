@@ -1,0 +1,48 @@
+Vocabulary
+1. VIEW
+2. VIEW_NAME
+3. FORCE
+4. SIMPLE VIEW
+5. NOFORCE
+6. CREATE VIEW
+7. Alias
+8. subquery
+9. Complex view
+10. REPLACE
+
+Try It / Solve It
+1.
+Views can be used to retrieve data from several tables,
+providing data independence for users
+Users can view the same data in different ways
+Views provide groups of users with access to data
+according to their particular permissions or criteria
+
+2.
+SELECT d_songs.id, d_songs.title "Song Title", d_songs.artist
+from d_songs INNER JOIN d_types ON d_songs.type_code = d_types.code
+where d_types.description = 'New Age';
+
+3.
+?
+SELECT * FROM view_d_songs
+
+4.
+CREATE OR REPLACE VIEW view_d_songs AS
+SELECT d_songs.id, d_songs.title "Song Title", d_songs.artist, d_songs.type_code
+from d_songs INNER JOIN d_types ON d_songs.type_code = d_types.code
+where d_types.description = 'New Age'
+
+5.
+CREATE OR REPLACE VIEW view_d_songs AS
+SELECT d_songs.id, d_songs.title "Song Title", d_songs.artist, d_songs.type_code
+from d_songs INNER JOIN d_types ON d_songs.type_code = d_types.code
+where d_types.description = 'New Age';
+
+6.
+CREATE OR REPLACE VIEW view_min_max_avg_dpt_salary ("Department Id", "Department Name", "Max Salary", "Min Salary", "Average Salary") AS
+SELECT dpt.department_id, dpt.department_name, MAX(NVL(emp.salary,0)), MIN(NVL(emp.salary,0)), ROUND(AVG(NVL(emp.salary,0)),2)
+FROM departments dpt LEFT OUTER JOIN employees emp ON dpt.department_id = emp.department_id
+GROUP BY (dpt.department_id, dpt.department_name);
+
+

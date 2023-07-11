@@ -1,0 +1,89 @@
+Practice 12-2
+
+Vocabulary
+-UPDATE
+-correlated subquery update
+-Integrity Constraints
+-correlated subquery delete
+-DELETE
+
+Try It / Solve It
+1. 
+CREATE TABLE copy_f_food_items
+AS ( SELECT * FROM f_food_items);
+
+UPDATE copy_f_food_items  SET price = 3.75
+WHERE description = 'Strawberry Shake';
+UPDATE copy_f_food_items  SET price = 1.20
+WHERE description = 'Fries';
+
+SELECT * FROM copy_f_food_items;
+
+2. 
+CREATE TABLE copy_f_staffs
+AS ( SELECT * FROM f_staffs);
+
+UPDATE copy_f_staffs  SET overtime_rate = NVL(overtime_rate, 0) + 0.75
+WHERE LOWER(first_name || ' ' || last_name) = 'bob miller';
+UPDATE copy_f_staffs  SET overtime_rate = NVL(overtime_rate, 0) + 0.85
+WHERE LOWER(first_name || ' ' || last_name) = 'sue doe';
+
+SELECT * FROM copy_f_staffs;
+
+3. 
+CREATE TABLE copy_f_orders
+AS ( SELECT * FROM f_orders);
+
+INSERT INTO copy_f_orders(order_number,order_date,order_total,cust_id,staff_id)
+VALUES(5680,TO_DATE('June 12, 2004','fmMonth dd, yyyy'),159.78,145,9);
+INSERT INTO copy_f_orders(order_number,order_date,order_total,cust_id,staff_id)
+VALUES(5691,TO_DATE('09-23-2004','mm-dd-yyyy'),145.98,225,12);
+INSERT INTO copy_f_orders(order_number,order_date,order_total,cust_id,staff_id)
+VALUES(5701,TO_DATE('July 4, 2004','fmMonth dd, yyyy'),229.31,230,12);
+
+SELECT * FROM copy_f_orders;
+
+4. 
+CREATE TABLE copy_f_customers
+AS ( SELECT * FROM f_customers);
+
+INSERT INTO copy_f_customers(id,first_name,last_name,address,city,state,zip,phone_number)
+VALUES(145,'Katie','Hernandez','92 Chico Way','Los Angeles','CA',98008,'8586667641');
+
+INSERT INTO copy_f_customers(id,first_name,last_name,address,city,state,zip,phone_number)
+VALUES(225,'Daniel','Spode','1923 Silverado','Denver','CO',80219,'7193343523');
+
+SELECT * FROM copy_f_customers;
+
+5. 
+UPDATE copy_f_staffs  SET salary = (SELECT salary FROM copy_f_staffs WHERE LOWER(first_name || ' ' || last_name) = 'bob miller')
+WHERE LOWER(first_name || ' ' || last_name) = 'sue doe';
+SELECT * from copy_f_staffs;
+
+6. 
+INSERT INTO copy_f_staffs(id,first_name,last_name,birthdate,salary,overtime_rate,training,staff_type,manager_id,manager_budget,manager_target)
+VALUES(25,'Kai','Kim',TO_DATE('03-Nov-1988','fmdd-Mon-yyyy'),6.75,NULL,NULL,'Order Taker',NULL,NULL,NULL);
+
+SELECT * FROM copy_f_staffs;
+
+7. 
+UPDATE copy_f_staffs  SET manager_id = (SELECT manager_id  FROM copy_f_staffs WHERE LOWER(first_name || ' ' || last_name) = 'sue doe')
+WHERE LOWER(first_name || ' ' || last_name) = 'kai kim';
+
+SELECT * FROM copy_f_staffs;
+
+8. 
+ORA-02292: integrity constraint (RO_A864_SQL_S11.EMP_DEPT_FK) violated - child record found
+
+9. 
+DELETE FROM copy_f_staffs
+WHERE LOWER(first_name || ' ' || last_name) = 'kai kim';
+SELECT * FROM copy_f_staffs;
+
+10. 
+CREATE TABLE lesson7_emp
+AS ( SELECT * FROM employees);
+
+DELETE FROM lesson7_emp
+WHERE employee_id IN ( SELECT DISTINCT employee_id FROM job_history) ;
+

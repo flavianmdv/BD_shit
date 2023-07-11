@@ -1,0 +1,51 @@
+VOCABULARY
+1.UNION
+2.TO CHAR(NULL), TO_DATE(NULL), TO_NUMBER(NULL)
+3.UNION ALL
+4.set operators
+5.MINUS
+6.INTERSECT
+
+TRY IT/SOLVE IT
+1.UNION
+UNION ALL
+MINUS
+INTERSECT
+
+2.
+SELECT employee_id, job_id, hire_date, TO_DATE(NULL)  start_date, department_id
+FROM employees
+UNION
+SELECT employee_id, job_id, TO_DATE(NULL), start_date,  department_id
+FROM job_history
+ORDER BY employee_id, hire_date, start_date NULLS FIRST
+
+3.
+SELECT employee_id, job_id, hire_date, department_id
+FROM employees
+UNION ALL
+SELECT employee_id, job_id,  start_date,  department_id
+FROM job_history
+ORDER BY employee_id, hire_date
+
+4.
+SELECT employee_id
+FROM employees
+MINUS
+SELECT employee_id
+FROM job_history
+
+5.
+SELECT  employee_id
+FROM employees
+INTERSECT
+SELECT  employee_id
+FROM job_history
+
+6.
+SELECT employee_id, job_id, NVL(salary, 0)
+FROM employees
+UNION
+SELECT employee_id, job_id, DEPARTMENT_ID
+FROM job_history
+ORDER BY employee_id

@@ -1,0 +1,45 @@
+Practice 13-2
+
+Vocabulary
+-INTERVAL YEAR TO MONTH
+-TIMESTAMP WITH LOCAL TIME ZONE
+-BLOB
+-TIMESTAMP WITH TIME ZONE
+-CLOB
+-TIMESTAMP
+
+Try It / Solve It
+1. a. CREATE TABLE time_a(first_column TIMESTAMP WITH TIME ZONE,
+second_column TIMESTAMP WITH LOCAL TIME ZONE);
+
+INSERT INTO time_ex3
+(first_column, second_column)
+VALUES
+(TO_TIMESTAMP_TZ('2016-11-0116:02:08.236+05:30','YYYY-MM-DDHH24:MI:SS.FFTZH:TZM'),
+TO_TIMESTAMP_TZ('2016-11-0116:02:08.236+05:30','YYYY-MM-DDHH24:MI:SS.FFTZH:TZM'));
+
+b. CREATE TABLE time_ex4
+(loan_duration1 INTERVAL YEAR(3) TO MONTH,
+loan_duration2  INTERVAL YEAR(2) TO MONTH);
+INSERT INTO time_ex4 (loan_duration1, loan_duration2 )
+VALUES( INTERVAL '120' MONTH(3), INTERVAL '3-6' YEAR TO MONTH);
+
+c. CREATE TABLE time_ex5
+(day_duration1 INTERVAL DAY(3) TO SECOND,
+day_duration2  INTERVAL DAY(3) TO SECOND);
+INSERT INTO time_ex5 (day_duration1, day_duration2 )
+VALUES( INTERVAL '25' DAY(2), INTERVAL '4 10:30:10' DAY TO SECOND);
+
+2. a SELECT * FROM time_ex3;
+b. SELECT TO_CHAR( SYSDATE + loan_duration1 , 'DD-Month-YYYY') AS "120 months from Now", TO_CHAR( SYSDATE + loan_duration2 , 'DD-Month-YYYY') AS "3 years 6 months from Now"
+FROM time_ex4;
+c. SELECT
+TO_CHAR( SYSDATE , 'DD-Month-YYYY hh:mi:ss') AS now,
+ TO_CHAR( SYSDATE + day_duration1 , 'DD-Month-YYYY hh:mi:ss') AS "25 days from Now",
+ TO_CHAR( SYSDATE + day_duration2 , 'DD-Month-YYYY hh:mi:ss') AS "4day10hr30min10sec from now "
+FROM time_ex5;
+
+3. 	De exemplu in momentul in care in echipa ta de lucru exista oameni 
+din alte tari, unde fusul orar e diferit de al nostru.
+	Daca vrei sa te uiti la un meci dintr-un sport specific si intri pe un site din 
+strainatate care specifica ora meciului, trebuie stiut fusul orar al tarii in care se disputa meciul respectiv

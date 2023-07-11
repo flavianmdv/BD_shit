@@ -1,0 +1,41 @@
+Practice 14-1
+
+Vocabulary
+1. UNIQUE constraint
+2. NOT NULL constraint
+3. PRIMARY KEY
+4. CHECK constraint
+5. References
+6. UNIQUE constraint
+7. Foreign Key
+8. Table Level Constraint
+9. Constraint
+10. Column Level Constraint
+
+Try It / Solve It
+
+2.
+Constrangerile care se refera la mai mult de o coloane sunt definite la nivel de tabel
+NOT NULL trebuie definit la nivel de coloana
+
+3. 
+Pentru a ne da seama daca una din constrangeri a incurcat executia programului
+Este usor sa lucrezi cu ele avand nume specifice.
+
+4.
+5.
+
+?
+6. 
+CREATE TABLE  f_global_locations
+( id NUMBER(6,0) CONSTRAINT f_gln_id_pk PRIMARY KEY ,
+name VARCHAR2(50),
+date_opened DATE CONSTRAINT f_gln_dt_opened_nn NOT NULL ENABLE,
+address VARCHAR2(50) CONSTRAINT f_gln_add_nn NOT NULL ENABLE,
+city VARCHAR2(30)  CONSTRAINT f_gln_city_nn NOT NULL ENABLE,
+zip_postal_code VARCHAR2(12),
+phone VARCHAR2(20),
+email VARCHAR2(75) CONSTRAINT f_gln_email_uk UNIQUE,
+manager_id NUMBER(6,0),
+emergency_contact VARCHAR2(20)
+);

@@ -1,0 +1,46 @@
+Vocabulary
+-
+- constraint
+-PRIMARY KEY
+-NOT NULL
+-
+-FOREIGN KEY Constraint
+
+Try It / Solve It
+1. 
+a) Este un identificator pentru fiecare rand al tabelului
+b) Este o referinta catre un alt tabel
+c) Defineste conditia care trebuie sa fie indeplinita de fiecare camp al randului
+
+2. 
+animal_id NUMBER(6)  - PRIMARY KEY
+name VARCHAR2(25)
+license_tag_number NUMBER(10)- UNIQUE
+admit_date DATE- NOT NULL
+adoption_id NUMBER(5),
+vaccination_date DATE- NOT NULL
+
+3
+CREATE TABLE  animals
+( animal_id  NUMBER(6,0) CONSTRAINT anl_id_pk PRIMARY KEY ,
+name VARCHAR2(25),
+license_tag_number NUMBER(10,0) CONSTRAINT anl_l_tag_num_uk UNIQUE,
+admit_date  DATE CONSTRAINT anl_adt_dat_nn NOT NULL ,
+adoption_id   NUMBER(5,0),
+vaccination_date  DATE CONSTRAINT anl_vcc_dat_nn NOT NULL);
+
+4.
+INSERT INTO animals (animal_id, name, license_tag_number, admit_date, adoption_id, vaccination_date)
+VALUES( 101, 'Spot', 35540, TO_DATE('10-Oct-2004', 'DD-Mon-YYYY'), 205, TO_DATE('12-Oct-2004', 'DD-Mon-YYYY'));
+SELECT * FROM animals;
+
+5.
+
+6.
+
+7. 
+Trebuie sa fie pentru randul pentru care a fost definita
+Nu poate fi folosita in clauze care se refera la valori de pe alte randuri
+Nu poate contine apelari ale functiilor SYSDATE, UID, USER, USERENV
+
+

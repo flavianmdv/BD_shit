@@ -1,0 +1,44 @@
+VOCABULARY
+1.COUNT
+2.DISTINCT
+3.COUNT(DISTINCT ....)
+
+TRY IT/ SOLVE IT
+1.
+SELECT COUNT( title)
+FROM d_songs
+
+2.
+SELECT COUNT(DISTINCT  loc_type)
+FROM d_venues
+
+3.
+SELECT COUNT(song_id), COUNT(DISTINCT cd_number)
+FROM d_track_listings
+
+4.
+SELECT COUNT(email) 
+FROM d_clients
+
+5.
+SELECT (COUNT(*) - COUNT(auth_expense_amt)) "Free from limit count"
+FROM d_partners
+
+6.
+4 AND 3
+
+7.
+SELECT ROUND(AVG(NVL(auth_expense_amt,100000)),2)
+FROM d_partners
+
+8.
+a.F
+b.T
+c.T
+d.F
+
+9.
+a.F
+b.F
+c.T
+d.F

@@ -1,0 +1,33 @@
+TRY IT/SOLVE IT
+1.
+SELECT  first_name, last_name
+FROM EMPLOYEES
+WHERE salary >  (SELECT salary FROM employees WHERE last_name = 'Lorentz') AND department_id = (SELECT department_id FROM employees WHERE last_name = 'Abel')
+
+2.
+SELECT  first_name, last_name
+FROM EMPLOYEES
+WHERE  job_id = (SELECT job_id  FROM employees WHERE last_name = 'Rajs') AND hire_date >  (SELECT hire_date FROM employees WHERE last_name = 'Davies')
+
+3.
+SELECT id, name
+FROM d_events
+WHERE theme_code =  (SELECT theme_code FROM d_events WHERE id = 100)
+
+4.
+SELECT staff_type, MAX(salary)
+FROM f_staffs
+GROUP BY staff_type
+HAVING MAX(salary) < (SELECT MAX(SALARY) FROM f_staffs WHERE staff_type = 'Cook')
+
+5.
+SELECT department_id, TO_CHAR(ROUND(AVG(salary),2),'$999999.99') "Average Salary"
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) > ( SELECT salary from employees WHERE last_name = 'Ernst')
+
+6.
+SELECT department_id, TO_CHAR(ROUND(MIN(salary),2),'$999999.99') "Minimum Salary"
+FROM employees
+GROUP BY department_id
+HAVING MIN(salary) > ( SELECT MIN(salary) from employees WHERE department_id != 50)

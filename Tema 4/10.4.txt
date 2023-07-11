@@ -1,0 +1,22 @@
+TRY IT/SOLVE IT
+1.
+
+2.
+SELECT oe.last_name, oe.department_id, oe.salary
+FROM employees oe
+WHERE oe.salary = (SELECT MAX(ie.salary) FROM employees ie WHERE ie.department_id = oe.department_id)
+
+3.
+SELECT outer.last_name, outer.department_id, outer.salary
+FROM employees outer
+WHERE outer.employee_id  IN (SELECT  inner.manager_id
+FROM employees  inner
+WHERE inner.manager_id = outer.employee_id)
+ORDER BY outer.department_id
+
+4.
+WITH max_calc_sal AS (SELECT jobs.job_id , jobs.job_title, MAX(NVL(employees.salary,0)) AS job_actual_max FROM employees RIGHT OUTER JOIN   jobs  ON  employees.job_id =  jobs.job_id    GROUP BY jobs.job_id,jobs.job_title)
+SELECT job_title, job_actual_max AS  job_total
+FROM max_calc_sal
+WHERE job_actual_max > (SELECT MAX(job_actual_max)/2 FROM max_calc_sal)
+ORDER BY job_total  DESC

@@ -1,0 +1,61 @@
+Vocabulary
+-DISABLE CONSTRAINT
+-CASCADE clause
+-ALTER TABLE
+-ENABLE CONSTRAINT
+-DROP CONSTRAINT
+-DROP COLUMN
+-CASCADE CONSTRAINT
+
+Try It / Solve It.
+
+1. 
+ADD, DROP, ENABLE, DISABLE
+
+2.
+ALTER TABLE copy_d_clients
+ADD  CONSTRAINT copy_d_clt_client_number_pk PRIMARY KEY (client_number);
+
+SELECT *
+FROM user_constraints
+WHERE LOWER(table_name) =  'copy_d_clients' and constraint_type = 'P';
+
+3.
+ALTER TABLE  copy_d_events
+ADD CONSTRAINT copy_d_eve_client_number_fk FOREIGN KEY (client_number) REFERENCES  copy_d_clients (client_number) ENABLE;
+
+
+SELECT *
+FROM user_constraints
+WHERE LOWER(table_name) =  'copy_d_events' and constraint_type = 'R';
+
+4.
+SELECT constraint_name, constraint_type, table_name
+FROM user_constraints
+WHERE table_name =  UPPER('copy_d_events') ;
+
+SELECT constraint_name, constraint_type, table_name
+FROM user_constraints
+WHERE table_name =  UPPER('copy_d_clients') ;
+
+a. COPY_D_CLT_CLIENT_NUMBER_PK
+b. COPY_D_EVE_CLIENT_NUMBER_FK
+
+5.
+6.
+7.
+8.
+9.
+ALTER TABLE copy_d_clients
+ENABLE CONSTRAINT COPY_D_CLT_CLIENT_NUMBER_PK ;
+
+10.
+11
+Este bine sa dezactivezi constrangerile cand se incarca foarte multe date in tabel sau cand se fac multe schimbari la nivelul acestuia
+
+12.
+C - Check constraint
+P - Primary Key
+R - Foreign Key
+U - Unique Key
+

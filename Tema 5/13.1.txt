@@ -1,0 +1,40 @@
+Vocabulary
+-Data Dictionary
+-Schema
+-DEAFULT
+-TABLE
+-CREATE TABLE
+
+try it
+
+1.
+
+2.
+ CREATE TABLE  graduate_candidates
+   ( student_id NUMBER(6,0),
+     last_name VARCHAR2(75),
+     first_name VARCHAR2(75),
+     credits NUMBER(3,0))
+
+3.
+DESCRIBE graduate_candidates;
+
+4.
+
+CREATE TABLE medvichi_table
+AS ( SELECT * FROM graduate_candidates);
+
+5.
+
+?INSERT INTO medvichi_table (student_id, last_name, first_name, credits, graduation_date)
+Values(99,'Medvichi','Flavian',60,NULL);
+
+
+6.
+
+
+
+
+
+
+

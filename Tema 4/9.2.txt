@@ -1,0 +1,20 @@
+VOCABULARY
+1.ROLLUP
+2.CUBE
+3.GROUPING SETS
+
+TRY IT/SOLVE IT
+1.
+SELECT  manager_id, job_id, SUM(salary) "total salary"
+FROM employees
+GROUP BY ROLLUP(manager_id, job_id)
+
+2.
+SELECT  manager_id, job_id, SUM(salary) "total salary"
+FROM employees
+GROUP BY CUBE(manager_id, job_id)
+
+3.
+SELECT department_id, manager_id, job_id, SUM(salary) "total salary",  GROUPING(department_id),  GROUPING(manager_id), GROUPING(job_id)
+FROM employees
+GROUP BY GROUPING SETS((department_id, manager_id, job_id), (manager_id, job_id), (department_id, manager_id))

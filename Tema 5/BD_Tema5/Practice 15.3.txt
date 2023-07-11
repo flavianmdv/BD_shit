@@ -1,0 +1,37 @@
+Practice 15-3
+ 
+Vocabulary
+1. TOP-N Analysis
+2. DROP
+3. INLINE VIEW
+
+Try It / Solve It
+1. 
+CREATE OR REPLACE VIEW view_copy_d_songs  AS
+SELECT title, artist
+FROM copy_d_songs;
+
+SELECT * FROM view_copy_d_songs;
+
+2. 
+DROP VIEW view_copy_d_songs;
+SELECT * FROM view_copy_d_songs;
+ORA-00942: table or view does not exist
+
+3. 
+SELECT * FROM
+(SELECT last_name, salary FROM employees ORDER BY salary  DESC)
+WHERE ROWNUM <= 3;
+
+4. 
+SELECT empm.last_name, empm.salary, dptmx.department_id
+FROM
+(SELECT dpt.department_id, MAX(NVL(emp.salary,0)) max_dpt_sal
+FROM departments dpt LEFT OUTER JOIN employees emp ON dpt.department_id = emp.department_id
+GROUP BY dpt.department_id) dptmx LEFT OUTER JOIN employees empm ON dptmx.department_id = empm.department_id
+WHERE NVL(empm.salary,0) = dptmx.max_dpt_sal;
+
+5. 
+SELECT ROWNUM,last_name, salary
+FROM
+(SELECT * FROM f_staffs ORDER BY SALARY);
