@@ -1,0 +1,45 @@
+VOCABULARY
+1. ESCAPE
+2. IS NULL
+3. BETWEEN
+4. BETWEEN...AND
+5.LIKE
+6.IN
+
+TRY IT
+1.
+SELECT first_name, last_name, salary
+FROM f_staffs
+WHERE salary BETWEEN 5.00 AND 10.00
+
+2
+SELECT loc_type, comments
+FROM d_venues
+WHERE loc_type = 'Private Home'
+
+3
+SELECT first_name, last_name
+FROM f_staffs
+WHERE salary >=20.00 AND salary<=60.00
+
+4
+SELECT title
+FROM d_cds
+WHERE title LIKE  '_a%'
+
+5
+SELECT partner_type
+FROM d_partners
+WHERE AUTH_EXPENSE_AMT IS NULL
+
+6
+SELECT first_name||' '||last_name as "Possible Candidates"
+FROM employees
+WHERE last_name LIKE '%n'
+
+7c
+
+8
+SELECT title
+FROM d_songs
+WHERE type_code IN (77,12,1)

@@ -1,0 +1,55 @@
+VOCABULARY
+1.ORDER
+2.ORDER DESC
+3.sorting
+
+
+TRY IT
+1.
+SELECT employee_id AS "Number", first_name, last_name
+FROM employees
+ORDER BY "Number"
+
+2.
+SELECT title
+FROM d_cds
+ORDER BY year, title
+
+3.
+SELECT title AS "Our Colection"
+FROM d_cds
+ORDER BY "Our Colection" DESC
+
+4.
+SELECT first_name,  last_name,  student_id ,  parking_number
+FROM students
+WHERE year = 1
+ORDER BY  last_name ,  first_name DESC
+
+5.
+SELECT department_id , last_name, manager_id
+FROM employees
+WHERE employee_id<125
+ORDER BY  department_id DESC , last_name DESC
+
+EXTENSION
+1.e
+2.c
+3.a,d
+4.a,b,c
+5.c
+6.d
+7.a,b,c,d
+8.b
+9.d
+10.all wrong
+11.
+WHERE last_name LIKE 'St%'
+12. mai mult decat 2100 si mai putin de 1900
+13.
+a. WHERE department_id NOT IN (101,102,103)
+b. WHERE last_name = 'King'
+c. WHERE start_date = '05-May-1998'
+d. WHERE salary IS BETWEEN 5000 AND 7000
+e. WHERE id != 10
+14.410

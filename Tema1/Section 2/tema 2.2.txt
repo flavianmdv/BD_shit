@@ -1,0 +1,55 @@
+Vocabulary
+1.where
+2.operator de comparatie
+
+TRY IT/SOLVE IT
+1.SELECT first_name, last_name, address
+FROM f_customers
+WHERE id=456
+
+2.
+SELECT name, start_date, end_date
+FROM f_promotional_menus
+WHERE give_away = 'ballpen and highlighter'
+
+3
+SELECT 'The '||year||' recording in our database is '||title  as "Oldest"
+FROM d_cds
+WHERE year = (SELECT MIN(year) FROM d_cds);
+
+4
+SELECT producer, title
+FROM d_cds
+WHERE title = 'Carpe Diem' ;
+
+5
+SELECT title, year
+FROM d_cds
+WHERE year<2000
+
+6 a,b,c,d
+
+7
+SELECT studentno, fname, lname
+FROM students
+WHERE SEX = 'F'
+
+8
+SELECT studentno
+FROM students
+WHERE major = 'PE'
+
+9
+SELECT studentno, fname, lname, major
+FROM students
+WHERE SEX = 'M'
+
+10
+SELECT title, year
+FROM d_cds
+WHERE year!=2000
+
+11
+SELECT first_name, last_name
+FROM f_staffs
+WHERE birthdate<'01-jan-1980'

@@ -1,0 +1,44 @@
+Vocabulary
+1.Row
+2.Primary key
+3.Table
+4.Foreing key
+5.Relational database
+6.Field
+7.Data manipulation language(DML)
+8.Data definition language(DDL)
+9.Transaction control language(TCL)
+10.Data control language(DCL)
+
+Try It/Solve it
+1. 9 tables
+2.F_SHIFTS_ASSIGMENTS
+3.
+ID
+FIRST_NAME
+LAST_NAME
+CITY
+STATE
+ZIP
+PHONE_NUMBER
+4.2 ROWS
+5.coloanele 4 si 5, care au ca referinta cheia primara CODE in tabelele F_PROMOTIONAL_MENUS si F_REGULAR_MENUS
+
+6.PK CODE din F_REGULAR_MENUS este FK cu 
+numele de REGULAR_CODE in F_FOOD_ITEMS apoi PK FOOD_ITEM_NUMBER 
+din tabelul F_FOOD_ITEMS e PFK cu numele de ORDER_NUMBER in tabelul F_ORDER_LINES 
+si PK cu acelasi nume in tabelul F_ORDERS, FK cu numele
+STAFF_ID este PK in tabelul F_STAFFS cu numele ID, in tabelul F_SHIFT_ASSIGMENTS
+PKF este ID care e PK in tabelul F_STAFFS, PFK cu numele CODE este cheie primara 
+si in tabelul F_SHIFTS
+ 
+7.F_STAFFS
+ F_FOOD_ITEMS
+EMPLOYEES
+WF_COUNTRIES
+HTMLDB_PLAN_TABLE
+WF_CURRENCIES
+WF_SPOKEN_LANGUAGES
+D_PLAY_LIST_ITEMS
+DEPARTAMENTS
+D_PARTNERS

@@ -1,0 +1,33 @@
+1.a. single row
+b. multiple row
+c.multiple row
+d.multiple row
+e.single row
+f.single row
+
+2.
+AVG-face media de pe un row
+COUNT-numara
+max- gaseste maximul 
+min- gaseste minimul
+sum- face suma 
+
+3.SELECT avg(salary)
+FROM employees
+8775
+
+SELECT count(salary)
+FROM employees
+20
+
+SELECT min(salary)
+FROM employees
+2500
+
+SELECT max(salary)
+FROM employees
+24000
+
+SELECT sum(salary)
+FROM employees
+175500

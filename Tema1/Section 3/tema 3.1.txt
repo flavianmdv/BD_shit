@@ -1,0 +1,37 @@
+VOCABULARY
+1. NOT
+2. AND
+3. precedence rules
+4. OR
+
+TRY IT/SOLVE IT
+1.
+Diferentele constau in faptul ca la prima trebuie indeplinite 
+ambele conditii iar la a doua e necesara ca una din ele sa fie 
+indeplinita pentru a afisa
+
+2.
+SELECT last_name
+FROM f_staffs
+WHERE last_name LIKE'%e%' AND last_name LIKE '%i%'
+
+3.
+SELECT last_name
+FROM f_staffs
+WHERE salary >=6.50 AND staff_type !='Order Taker'
+
+4
+SELECT first_name||''||last_name AS "Name"
+FROM employees
+WHERE last_name LIKE 'D%' AND last_name LIKE '%a%' AND last_name LIKE '%a%'
+5
+
+6 c
+7SELECT first_name  ||  ' '  || last_name  as "Full Name"
+FROM employees
+WHERE hire_date > '31-May-1998' AND hire_date < '01-Jun-1999' AND salary < 8000 AND last_name like '%en%';
+
+8
+SELECT LOWER(email) ||  '@institutedomain.com'  as "Email Address"
+FROM employees
+WHERE  salary > 9000 AND (commission_pct = 0 OR commission_pct IS NULL)  AND hire_date >= '01-Jan-1996' AND hire_date <= '31-Mar-1996'

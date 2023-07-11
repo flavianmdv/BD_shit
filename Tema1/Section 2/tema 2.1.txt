@@ -1,0 +1,70 @@
+Vocabulary
+1.DISTINCT
+2.Concatenation operator
+3.string
+4.DESC
+
+TRY IT/SOLVE IT
+1.SELECT last_name, address FROM F_CUSTOMERS;
+2.
+a.
+SELECT first_name
+FROM f_staffs;
+
+b.
+SELECT first_name ||' '|| last_name AS "DJs on Demand Clients"
+FROM d_clients;
+
+c.
+SELECT DISTINCT quantity
+FROM f_order_lines;
+
+d.
+SELECT order_number
+FROM f_orders;
+
+3.
+SELECT ' *** '||first_name||' *** '||first_name||' ***' as "Super Star"
+FROM f_staffs;
+
+4.d.
+
+5.
+SELECT last_name AS "EMPLOYE LAST NAME", salary AS "CURRENT SALARY", salary + salary*.05 AS "SALARY WITH 5% RAISE"
+FROM f_staffs;
+
+6
+columns marked as nullable:FIRST_NAME, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTAMENT_ID, BONUS
+It means that the respective fields doesnt have any data.
+
+7.
+SELECT cd_number as "Inventory Item", title as "CD Title", producer as "Music Producer", year as "Year Purchased"
+FROM d_cds;
+
+8. TRUE
+9.TRUE
+10.
+SELECT employee_id, last_name, salary*12 "ANNUAL SALARY"
+FROM employees;
+
+11.
+Inmultirea
+
+12b
+
+13b
+
+14c
+
+15b
+
+16c
+
+17c
+
+18 b,d
+
+19 a
+
+20.
+

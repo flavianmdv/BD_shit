@@ -1,0 +1,39 @@
+Vocabulary
+1.join
+2.Arithmetic operator
+3.column
+4.projection
+5.NULL
+6.column alias
+7.arithmetic expression
+8.selection
+9.SELECT
+10.select clause
+11.from
+12.select
+13.clause
+14.statement
+
+TRY IT
+1.SELECT <nume>
+2.SELECT last_name AS "Client" ,email AS "Email Address"
+FROM D_CLIENTS;
+3.SELECT last_name, salary + salary *.05 +.50
+FROM f_staffs;
+4. c
+5. b
+6. 
+keywords: SELECT, FROM
+clauses:SELECT employee_id, last_name
+	FROM emplyees
+statements:SELECT employee_id, last_name FROM emplyees
+
+7.
+a.selection
+b.projection
+
+8.c
+
+9.c
+
+10.b
