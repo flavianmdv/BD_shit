@@ -1,0 +1,46 @@
+Vocabulary
+- Literals
+- Delimiters
+- Reserved words
+- Comments
+- Lexical Units
+- Identifiers
+
+Try it 
+
+1.
+Today   Valid
+Last name  Invalid - contains a space
+today’s_date  Invalid - contains quote ' 
+number_of_days_in_february_this_ year invalid contains more than 30 characters 
+Isleap$year  valid
+#number  invalid - must start with a letter (not with #)
+NUMBER#  valid
+Number1to7 valid
+
+2.
+Reserved:
+	create
+	table
+	alter
+	rename
+	row
+	number
+
+Not reserved:
+	make
+	seat
+	web
+
+3.
+
+SELECT      Reserved word
+:=         Delimiter
+'TEST'        Literal
+FALSE        Literal
+-- new process        Comment
+FROM        Reserved word
+/* select the country with the 
+highest elevation */                  Comment 
+v_test      Identificator
+4.09        Literal

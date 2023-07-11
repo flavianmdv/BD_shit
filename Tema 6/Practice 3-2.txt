@@ -1,0 +1,76 @@
+PL_Tema_3.2.txt
+1. 
+not valid
+not valid
+not valid
+valid
+not valid
+valid
+not valid
+not valid
+valid
+
+2. 
+DECLARE v_max_deptno departments.department_id%TYPE;
+BEGIN
+SELECT MAX(departmentno_id) INTO v_max_deptno FROM departments;
+DBMS_OUTPUT.PUT_LINE (' departamentul este : ' || v_max_deptno);
+END
+
+3. 
+DECLARE
+v_country_name countries.country_name%TYPE:='Federative Republic of Brazil';
+v_lowest_elevation number(10);
+v_highest_elevation number(10);
+BEGIN
+SELECT MIN(v_lowest_elevation), MAX(v_highest_elevation) INTO v_lowest_elevation ,v_highest_elevation
+FROM countries;
+DBMS_OUTPUT.PUT_LINE('The lowest elevation in ' || v_country_name || ' is ' ||v_lowest_elevation || ' and the highest elevation is ' || v_highest_elevation || '.');
+END;
+
+4. 
+a)Pentru ca exista mai multi agenti cu agelasi id
+b) Pentru ca ID_PRAG nu exista
+
+5. eroare : WHERE last_name = last_name
+
+a) CREATE TABLE emp_dup AS(SELECT * FROM employees);
+
+b) SELECT first_name, last_name
+FROM emp_dup;
+
+c)DECLARE
+last_name VARCHAR2(25) := 'Fay';
+BEGIN
+UPDATE emp_dup SET first_name = 'Jennifer' WHERE last_name = last_name;
+END;
+
+d)select first_name, last_name from emp_dup;
+
+e) drop table emp_dup;
+CREATE TABLE emp_dup AS (SELECT * FROM employees);
+
+f) DECLARE
+last_name VARCHAR2(25) :='Fay';
+BEGIN
+UPDATE emp_dup SET first_name = 'Jennifer' WHERE last_name = 'Fay';
+END;
+
+6) CREATE TABLE test(
+testID NUMBER(4) NOT NULL,
+test VARCHAR2(50),
+PRIMARY KEY(testID));
+
+INSERT INTO test(testID, test) values (1, 'Sir de test');
+select test from test;
+
+Da este posibi;
+
+7. DECLARE
+test VARCHAR2(25) := 'Test';
+BEGIN
+UPDATE test SET test = 'Test'
+WHERE testID = 1;
+END;
+
+Nu este posibil

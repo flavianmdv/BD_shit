@@ -1,0 +1,69 @@
+Practice 5-2
+
+Vocabulary
+-%ROWTYPE
+-RECORD
+-ISOPEN
+-ROWCOUNT
+-%NOTFOUND
+
+Try It/Solve It
+1. 
+Cu %ROWTYPE, nu trebuie să declarăm și să utilizăm o mulțime de variabile pentru 
+a stoca ceea ce returnează un cursor. Trebuie doar să declarăm o variabilă cu 
+cursor_name%ROWTYPE și PL / SQL creează automat o listă de variabile de același tip de 
+variabile returnate de cursor și le putem accesa cu variable_name.column_name
+
+2. 
+DECLARE
+ CURSOR countries_cur IS 
+ SELECT country_name, national_holiday_date, national_holiday_name
+ FROM wf_countries
+ WHERE region_id = 5;
+ v_countries countries_cur%ROWTYPE;
+BEGIN
+ OPEN countries_cur;
+ LOOP
+  FETCH countries_cur INTO v_countries;
+  EXIT WHEN countries_cur%NOTFOUND;
+  DBMS_OUTPUT.PUT_LINE(v_countries.country_name || ' ' || v_countries.national_holiday_date || ' ' || v_countries.national_holiday_name);
+  END LOOP;
+ CLOSE countries_cur;
+END;
+
+3.
+DECLARE
+ CURSOR employees_cursor IS 
+ SELECT *
+ FROM employees
+ ORDER BY salary DESC;
+ v_emp_rec employees_cursor%ROWTYPE;
+BEGIN
+ OPEN employees_cursor;
+ LOOP
+  FETCH employees_cursor INTO v_emp_rec;
+  EXIT WHEN employees_cursor%ROWCOUNT > 6;
+  DBMS_OUTPUT.PUT_LINE(v_emp_rec.first_name || ' ' || v_emp_rec.last_name || ' ' || v_emp_rec.job_id || ' ' || v_emp_rec.salary);
+  END LOOP;
+ CLOSE employees_cursor;
+END;
+
+4.
+Se repeta la infinit.
+
+5. 
+DECLARE
+ CURSOR employees_cursor IS 
+ SELECT *
+ FROM employees
+ ORDER BY salary DESC;
+ v_emp_rec employees_cursor%ROWTYPE;
+BEGIN
+ OPEN employees_cursor;
+ LOOP
+  FETCH employees_cursor INTO v_emp_rec;
+  EXIT WHEN employees_cursor%ROWCOUNT > 6 OR employees_cursor%NOTFOUND;
+  DBMS_OUTPUT.PUT_LINE(v_emp_rec.first_name || ' ' || v_emp_rec.last_name || ' ' || v_emp_rec.job_id || ' ' || v_emp_rec.salary);
+  END LOOP;
+ CLOSE employees_cursor;
+END;

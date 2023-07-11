@@ -1,0 +1,28 @@
+Practice 3-4
+
+Vocabulary
+-Transaction
+-Rollback
+-Savepoint
+-END
+-Commit
+
+Try It/Solve It
+1.
+Două tranzacții. Există două inserții în tabelul de my_savings care nu au nici o condiție 
+în cazul în care și nici o constrângere, astfel încât ambele pot fi executate. De asemenea, 
+nu există declarații de control al tranzacțiilor între început și sfârșit.
+
+3.
+100, 'Polar Bear','Ursus maritimus' 
+
+4.
+100, 'Polar Bear','Ursus maritimus'
+
+5.
+Nu vor fi salvate date în baza de date, deoarece prima revenire va reveni la ultima 
+confirmare. Din moment ce nu avem nici unul, nu vor fi salvate date, vom încerca apoi 
+să introduceți o altă valoare, dar vom reveni din nou, de data aceasta pentru a salva 
+punctul de sp_400 dar nu vor fi salvate date în baza de date.
+
+

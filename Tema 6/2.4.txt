@@ -1,0 +1,73 @@
+Vocabulary
+- Boolean
+- %TYPE
+
+Try it / Solve it
+1.
+A.
+a. number_of_students PLS_INTEGER;     Valid
+b. STUDENT_NAME VARCHAR2(10) = Johnson;     Invalid
+c. stu_per_class CONSTANT NUMBER;        Invalid
+d. tomorrow DATE := SYSDATE+1;      Valid
+
+B.
+b nu este validă deoarece literalele de tip șir de caractere trebuie să fie între ghilimele simple ('Johnson') și := este utilizat pentru a atribui valori, nu =.
+c nu este validă deoarece variabilele constante trebuie inițializate în timpul declarației.
+
+DECLARE
+number_of_students PLS_INTEGER := 30;
+student_name VARCHAR2(10) := 'Johnson';
+stu_per_class CONSTANT NUMBER := 1;
+today DATE := SYSDATE + 1;
+BEGIN
+DBMS_OUTPUT.PUT_LINE ('The number of students is:'||number_of_students||'.');
+DBMS_OUTPUT.PUT_LINE ('The name of the students is:'||student_name||'.');
+DBMS_OUTPUT.PUT_LINE ('The number of students per class is:'||stu_per_class||'.');
+DBMS_OUTPUT.PUT_LINE ('Tomorrows date is: '||today||'.');
+END;
+
+2.
+Ambele variabile au același nume ca coloanele de tabel de baze de date. Putem folosi
+v_ pentru variabile și c_ pentru constante, de exemplu v_country_name și v_median_age
+dar orice alt nume decât coloanele de tabel sau cuvintele rezervate sunt mai bune.
+
+3.
+DECLARE
+ country_name wf_countries.country_name%TYPE;
+ median_age wf_countries.median_age%TYPE;
+BEGIN
+ SELECT country_name, median_age INTO country_name, median_age
+ FROM wf_countries
+ WHERE country_name = 'Japan';
+ DBMS_OUTPUT.PUT_LINE('The median age in '|| country_name || ' is '
+ || median_age || '.');
+END
+
+4.
+În comparație cu tipurile de date de codare hard, utilizarea atributului %TYPE este mai bună deoarece:
+-putem evita erorile cauzate de nepotrivirea tipului de date sau de precizia greșită 
+-nu trebuie să modificăm declarația variabilelor dacă se modifică definiția coloanei de tabel
+
+Prin codificarea hard a tipurilor de date putem întâmpina probleme precum: dacă am declarat deja 
+unele variabile pentru coloanele country_name și median_age fără a utiliza atributul %TYPE, atunci 
+blocul PL/SQL poate returna erori dacă coloana de tabel este modificată.
+
+5.
+A.
+DECLARE
+today DATE:=SYSDATE;
+tomorrow today%TYPE;
+BEGIN
+DBMS_OUTPUT.PUT_LINE('Hello World');
+END;
+
+B.
+DECLARE
+ today DATE := SYSDATE;
+ tomorrow today%TYPE;
+BEGIN
+ v_tomorrow := SYSDATE+1;
+ DBMS_OUTPUT.PUT_LINE('Hello World');
+ DBMS_OUTPUT.PUT_LINE(today);
+ DBMS_OUTPUT.PUT_LINE(tomorrow);
+END;

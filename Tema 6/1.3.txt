@@ -1,0 +1,35 @@
+Vocabulary
+-Anonymous PL/SQL block
+- Functions
+- Subprogram
+- Compiler
+- Procedures
+
+Tri It
+1.
+DECLARE        optional 	                        declaration of the variables
+BEGIN              mandatory 	                        the executable part
+EXCEPTION    optional 	                        an error returned
+END;                mandatory 	                        the end of the executable part
+
+2.
+A. Nu reușește deoarece secțiunea executabilă trebuie să conțină cel puțin o instrucțiune.
+B. Nu reușește deoarece nu există o secțiune executabilă (BEGIN lipsește).
+C. Nu reușește deoarece secțiunea executabilă trebuie să conțină cel puțin o instrucțiune.
+D. Reușește
+
+3.
+A.anonymous blocks
+B.Procedures and Functions
+
+4.
+BEGIN
+DBMS_OUTPUT.PUT_LINE ('Hello World');
+END;
+
+5.
+declare var DATE:= ADD_Months(SYSDATE,6);
+begin
+DBMS_output.put_line('In six months, the date will be: '|| var||'.');
+end;
+

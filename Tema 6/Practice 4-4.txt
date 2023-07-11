@@ -1,0 +1,57 @@
+Practice 4-4
+
+Vocabulary
+-While loop
+-For loop
+
+Try it/Solve it:
+1.
+DECLARE
+ v_country_id wf_countries.country_id%TYPE := 51;
+ v_country_name wf_countries.country_name%TYPE;
+BEGIN
+ WHILE v_country_id <= 55 LOOP
+  SELECT country_name into v_country_name
+  FROM wf_countries
+  WHERE country_id = v_country_id;
+  DBMS_OUTPUT.PUT_LINE(v_country_id || ' ' || v_country_name);
+  v_country_id := v_country_id + 1;
+ END LOOP;
+END;
+
+2.
+DECLARE
+ v_country_id wf_countries.country_id%TYPE;
+ v_country_name wf_countries.country_name%TYPE;
+BEGIN
+ FOR v_country_id in REVERSE 51..55 LOOP
+  SELECT country_name into v_country_name
+  FROM wf_countries
+  WHERE country_id = v_country_id;
+  DBMS_OUTPUT.PUT_LINE(v_country_id || ' ' || v_country_name);
+ END LOOP;
+END;
+3.
+DROP TABLE new_emps;
+CREATE TABLE new_emps AS SELECT * FROM employees;
+ALTER TABLE new_emps ADD stars VARCHAR2(50);
+
+A.
+DECLARE
+ v_empno new_emps.employee_id%TYPE := 124;
+ v_asterisk new_emps.stars%TYPE := NULL;
+ v_sal_in_thousands new_emps.salary%TYPE;
+BEGIN
+ SELECT NVL(TRUNC(salary/1000), 0) INTO v_sal_in_thousands
+ FROM new_emps WHERE employee_id = v_empno;
+ FOR i in 1..v_sal_in_thousands LOOP
+ v_asterisk := CONCAT(v_asterisk, '*');
+ END LOOP;
+UPDATE new_emps
+ SET stars = v_asterisk
+ WHERE employee_id = v_empno;
+END;
+
+B.
+SELECT salary, stars FROM new_emps
+WHERE employee_id = 124;

@@ -1,0 +1,63 @@
+Vocabulary
+- NCLOB
+- LOB
+- Scalar
+- BLOB
+- Composite
+- BFILE
+- Reference
+- Object
+- CLOB
+
+Try it / Solve it
+1.
+PL/SQL utilizează tipuri de date speciale pentru a ține evidența diferitelor 
+tipuri de date pe care le procesează. Aceste tipuri de date definesc modul în 
+care datele sunt stocate fizic, care sunt constrângerile pentru date și, în final, 
+care este intervalul de valori valabil pentru date. Este util să se știe câtă memorie 
+trebuie alocată pentru fiecare variabilă și cum se citesc valorile binare din memorie.
+
+2.
+LOB
+Scalar
+Composite
+
+3.
+Number
+Date
+Varchar2
+
+4.
+Boolean
+
+5.
+BFILE
+
+6.
+CLOB -> LOB
+VARCHAR2 -> Scalar
+BLOB -> LOB
+NUMBER -> Scalar
+BFILE -> LOB
+TIMESTAMP ->  Scalar
+NCLOB -> LOB
+RECORD -> Composite
+PLS_INTEGER -> Scalar
+LONG ->  Scalar
+TABLE -> Composite
+BOOLEAN -> Scalar 
+
+
+7.
+Value Data Type Category Data Type
+‘Switzerland’ Scalar VARCHAR2
+Text of a resume Scalar Varchar2
+100.20 Scalar Number
+A picture LOB BLOB
+1053 Scalar Number
+11-Jun-2016 Scalar Date
+‘Computer science is the science of the 21st century.’ Scalar Varchar2
+Index Last_name 1 'Newman' 2 'Raman' 3 'Han'           Composite Table
+A movie  LOB BFILE
+A sound byte LOB BFILE / BLOB
+FALSE Scalar BLOB

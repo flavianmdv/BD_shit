@@ -1,0 +1,70 @@
+Practice 4-3
+
+Vocabulary:
+-basic loop
+-exit
+
+Try it/Solve it:
+1.
+Loop -urile sunt utilizate pentru a executa instructiuni repetitive pana cand este intalnita o conditie EXIT.
+
+2.
+-basic loop
+-for
+-while
+
+3.
+exit [when conditie]
+
+4.
+DECLARE
+ v_counter NUMBER(1) := 1;
+ v_country_name wf_countries.country_name%TYPE;
+BEGIN
+ LOOP
+  SELECT country_name INTO v_country_name
+  FROM wf_countries
+  WHERE country_id = v_counter;
+  DBMS_OUTPUT.PUT_LINE(v_country_name);
+  v_counter := v_counter +1;
+  IF v_counter > 3 THEN EXIT;
+  END IF;
+ END LOOP;
+END;
+
+5.
+DECLARE
+ v_counter NUMBER(1) := 1;
+ v_country_name wf_countries.country_name%TYPE;
+BEGIN
+ LOOP
+  SELECT country_name INTO v_country_name
+  FROM wf_countries
+  WHERE country_id = v_counter;
+  DBMS_OUTPUT.PUT_LINE(v_country_name);
+  v_counter := v_counter +1;
+  EXIT WHEN v_counter > 3;
+ END LOOP;
+END;
+
+6.
+A.
+DROP TABLE messages; 
+CREATE TABLE messages (results NUMBER(2)); 
+
+B.
+DECLARE
+ v_counter NUMBER(2) := 1;
+BEGIN
+ LOOP
+  IF v_counter <> 6 AND v_counter <> 8 THEN
+  INSERT INTO messages
+  VALUES (v_counter);
+  END IF;
+  v_counter := v_counter +1;
+  EXIT WHEN v_counter > 10;
+ END LOOP;
+END;
+
+C.
+select * from messages;

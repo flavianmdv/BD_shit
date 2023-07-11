@@ -1,0 +1,35 @@
+Vocabulary
+- Qualifier
+- Variable scope
+- Variable visibility
+
+Try It/ Solve It
+1.A. 2
+  B. Western Europe
+  C. 601
+  D. Product 10012is in stock
+  E. new_locn e declarat local, nu e visibil petru Position 2
+
+2.A. Deoarece se vor executa comenzile din blocul interior, numele variabilelor fiind aceleasi cu cele din blocul exterior
+  B. Deoarece afisarea se realizeaza in afara blocului interior
+  C.   Folosim eticheta outer. Pentru afisare punem outer.v_employee_id pentru afisarea valorii din blocul exterior
+
+	<<outer>>
+	 DECLARE
+	v_employee_id employees.employee_id%TYPE;
+	 v_job employees.job_id%TYPE;
+	BEGIN
+	 SELECT employee_id, job_id INTO v_employee_id, v_job
+	 FROM employees
+ 	WHERE employee_id = 100;
+	DECLARE
+	 v_employee_id employees.employee_id%TYPE;
+	 v_job employees.job_id%TYPE;
+	 BEGIN
+	 SELECT employee_id, job_id INTO v_employee_id, v_job
+	 FROM employees
+ 	WHERE employee_id = 103;
+ 	DBMS_OUTPUT.PUT_LINE(outer.v_employee_id || ' is a(n) ' || v_job); 
+	END;
+ 	DBMS_OUTPUT.PUT_LINE(v_employee_id || ' is a(n) ' || v_job);
+	END;

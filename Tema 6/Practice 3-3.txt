@@ -1,0 +1,82 @@
+PL_Tema_3.3.txt
+3-3 Practice
+
+Vocabulary
+-Implicit Cursors
+-Explicit Cursors
+-MERGE
+-INSERT
+-DELETE
+-UPDATE
+
+Try It/ Solve It
+1)True
+
+2)cursor attributes, implicit
+
+3)190
+
+4)
+DECLARE
+v_max_deptno new_depts.department_id%TYPE;
+v_dept_name new_depts.department_name%TYPE := 'A New Department';
+v_dept_id new_depts.department_id%TYPE;
+BEGIN
+ SELECT MAX(department_id) INTO v_max_deptno
+ FROM new_depts;
+ DBMS_OUTPUT.PUT_LINE('The maximum department id is: ' || v_max_deptno);
+END;
+
+5)
+DECLARE
+v_max_deptno new_depts.department_id%TYPE;
+v_dept_name new_depts.department_name%TYPE := 'A New Department';
+v_dept_id new_depts.department_id%TYPE;
+BEGIN
+ SELECT MAX(department_id) INTO v_max_deptno
+ FROM new_depts;
+ v_dept_id :=v_max_deptno + 10;
+ DBMS_OUTPUT.PUT_LINE('The maximum department id is: ' || v_max_deptno);
+ DBMS_OUTPUT.PUT_LINE('v_dept_id:' || v_dept_id);
+END;
+
+6)
+DECLARE
+v_max_deptno new_depts.department_id%TYPE;
+v_dept_name new_depts.department_name%TYPE := 'A New Department';
+v_dept_id new_depts.department_id%TYPE;
+BEGIN
+ SELECT MAX(department_id) INTO v_max_deptno
+ FROM new_depts;
+ v_dept_id :=v_max_deptno + 10;
+  INSERT INTO new_depts(department_id, department_name, location_id, manager_id)
+ VALUES (v_dept_id, v_dept_name, NULL, NULL)
+END;
+
+7)
+DECLARE
+v_max_deptno new_depts.department_id%TYPE;
+v_dept_name new_depts.department_name%TYPE := 'A New Department';
+v_dept_id new_depts.department_id%TYPE;
+BEGIN
+ SELECT MAX(department_id) INTO v_max_deptno
+ FROM new_depts;
+ v_dept_id :=v_max_deptno + 10;
+  INSERT INTO new_depts(department_id, department_name, location_id, manager_id)
+ VALUES (v_dept_id, v_dept_name, NULL, NULL);
+ DMBS_OUTPUT.PUT_LINE(SQL%ROWCOUNT);
+END;
+
+8)
+DECLARE
+v_max_deptno new_depts.department_id%TYPE;
+v_dept_name new_depts.department_name%TYPE := 'A New Department';
+v_dept_id new_depts.department_id%TYPE;
+BEGIN
+ SELECT MAX(department_id) INTO v_max_deptno
+ FROM new_depts;
+ v_dept_id :=v_max_deptno + 10;
+ UPDATE new_depts SET location_id=1400 
+ WHERE location_id=1700;
+ DMBS_OUTPUT.PUT_LINE(SQL%ROWCOUNT);
+END;

@@ -1,0 +1,34 @@
+Vocabulary
+-Procedural Constructs
+-PL/SQL
+
+1.
+?
+3GL PL/SQL 
+4GL  SQL 
+Is proprietary to Oracle Corporation PL/SQL 
+Nonprocedural  SQL 
+Procedural PL/SQL  
+Is ANSI-compliant  SQL
+2.
+Permite combinarea logicii de bază a programului și a fluxului de control cu instrucțiuni SQL.
+3.
+ Variables
+Constants
+Types
+
+4.
+v_first_name varchar2(40);
+v_last_name varchar2(40);
+v_first_letter varchar2(1);
+BEGIN
+SELECT first_name, last_name INTO v_first_name, v_last_name
+FROM students
+WHERE student_id = 105;
+v_first_letter := get_first_letter(v_last_name);
+IF 'N' > 'v_first_letter' THEN
+DBMS_OUTPUT.PUT_LINE('The last name for ' || v_first_name || ' ' || v_last_name || ' is between A and M');
+ELSE
+DBMS_OUTPUT.PUT_LINE('The last name for ' || v_first_name || ' ' || v_last_name || ' is between N and Z');
+END IF;
+END; 

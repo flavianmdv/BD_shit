@@ -1,0 +1,140 @@
+PL_Tema_5.5
+
+Vocabulary
+-FOR UPDATE
+-NOWAIT
+
+Try it / Solve it
+1. 
+DECLARE CURSOR employees_cur(parm_salary employees.salary%TYPE) IS
+SELECT * FROM employees
+WHERE salary < parm_salary FOR UPDATE
+OF salary NOWAIT;
+BEGIN
+FOR v_employee IN employees_cur(5000) LOOP INSERT INTO
+proposed_raises(date_proposed,
+date_approved,
+employee_id,
+department_id,
+original_salary,
+proposed_new_salary)
+VALUES(SYSDATE,
+NULL,
+v_employee.employee_id,
+v_employee.department_id,
+v_employee.salary,
+v_employee.salary*1.05);
+END LOOP;
+END;
+
+2. 
+SELECT * FROM proposed_raises;
+DELETE FROM proposed_raises;
+
+3. 
+A.
+DECLARE CURSOR prop_rais_cur IS
+SELECT * FROM proposed_raises
+FOR UPDATE NOWAIT;
+v_up prop_rais_cur%ROWTYPE;
+BEGIN
+OPEN prop_rais_cur;
+LOOP
+FETCH prop_rais_cur INTO v_up;
+EXIT WHEN prop_rais_cur%NOTFOUND;
+UPDATE proposed_raises 
+SET date_approved = SYSDATE();
+END LOOP;
+CLOSE prop_rais_cur;
+END;
+	   
+B.
+DECLARE 
+ CURSOR proposed_cur IS
+  SELECT * FROM proposed_raises
+  WHERE department_id = 50
+  FOR UPDATE NOWAIT;
+ v_prop_rec proposed_cur%ROWTYPE;
+BEGIN
+ OPEN proposed_cur;
+ LOOP
+  FETCH proposed_cur INTO v_prop_rec;
+  EXIT WHEN proposed_cur%NOTFOUND;
+  DELETE FROM proposed_raises
+  WHERE CURRENT OF proposed_cur; 
+ END LOOP;
+ CLOSE proposed_cur;
+END;
+
+4.
+A.
+CREATE TABLE upd_emps AS SELECT * FROM employees;
+
+B.
+DECLARE 
+ CURSOR upd_cur IS
+  SELECT * FROM upd_emps
+  WHERE employee_id = 200
+  FOR UPDATE;
+v_upd upd_cur%ROWTYPE;
+BEGIN
+OPEN upd_cur;
+LOOP
+FETCH upd_cur INTO v_upd;
+EXIT WHEN upd_cur%NOTFOUND;
+END LOOP;
+CLOSE upd_cur;
+END;
+
+C.
+DECLARE 
+ CURSOR upd_cur IS
+  SELECT * FROM upd_emps
+  FOR UPDATE NOWAIT;
+v_upd upd_cur%ROWTYPE;
+BEGIN
+OPEN upd_cur;
+LOOP
+FETCH upd_cur INTO v_upd;
+EXIT WHEN upd_cur%NOTFOUND;
+UPDATE upd_emps 
+SET salary = salary+1;
+END LOOP;
+CLOSE upd_cur;
+END;
+
+D.
+DECLARE 
+ CURSOR upd_cur IS
+  SELECT * FROM upd_emps
+  FOR UPDATE;
+v_upd upd_cur%ROWTYPE;
+BEGIN
+OPEN upd_cur;
+LOOP
+FETCH upd_cur INTO v_upd;
+EXIT WHEN upd_cur%NOTFOUND;
+UPDATE upd_emps 
+SET salary = salary+1;
+END LOOP;
+CLOSE upd_cur;
+END;
+
+E.
+DECLARE 
+ CURSOR upd_cur IS
+  SELECT * FROM upd_emps
+  WHERE employee_id = 200
+  FOR UPDATE;
+v_upd upd_cur%ROWTYPE;
+BEGIN
+OPEN upd_cur;
+LOOP
+FETCH upd_cur INTO v_upd;
+EXIT WHEN upd_cur%NOTFOUND;
+UPDATE upd_emps 
+SET first_name = 'Jenny'
+WHERE employee_id = 200;
+END LOOP;
+CLOSE upd_cur;
+END;

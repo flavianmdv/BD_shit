@@ -1,0 +1,20 @@
+Vocabulary
+- Portability
+- Blocks
+- Exceptions
+
+try it
+1.
+O aplicație este mai eficientă atunci când este creată în blocuri PL/SQL; este mai puțin trafic de rețea, ceea ce duce la o aplicație mai rapidă.
+2.
+Integrarea construcțiilor procedurale cu SQL.
+Îmbunătățirea performanței.
+Gestionarea excepțiilor.
+3.
+PL/SQL necesită o bază de date sau un instrument Oracle.
+PL/SQL permite unele tehnici de programare orientate pe obiecte, dar nu este la fel de extinsă ca Java.
+PL/SQL este cel mai eficient limbaj care poate fi utilizat cu o bază de date Oracle.
+4.
+Crearea de aplicații Web și alte aplicații
+Gestionați datele aplicațiilor
+Gestionarea bazei de date Oracle

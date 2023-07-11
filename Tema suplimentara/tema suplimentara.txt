@@ -1,0 +1,23 @@
+4.4.1
+SELECT nume, prenume
+FROM student
+WHERE gen = 'F'
+
+SELECT COUNT(fel) 
+FROM adresa
+WHERE fel = 'Camin'
+
+4.4.2
+SELECT titlu_mat AS "Materie"
+FROM examen
+WHERE nume_p = 'Pop'
+
+4.4.3
+SELECT nume_p 
+FROM examen
+WHERE fel_examen != 'Examen'
+
+4.4.4
+SELECT nume, prenume
+FROM student
+WHERE data_n < '01-Apr-1985'

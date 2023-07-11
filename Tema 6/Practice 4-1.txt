@@ -1,0 +1,102 @@
+
+Practice4-1
+Vocabulary
+-IF
+-LOOP
+-Condicion
+-CASE
+
+Try it/ Solve it
+1.Procesarea condiționată extinde utilitatea programelor, permițând utilizarea unor 
+teste logice simple pentru a determina ce declarații sunt exexutate.
+
+2.
+-IF conditional constructors
+-CASE expressions
+-LOOP Control Structures
+
+3.
+-IF 
+-END IF
+-ELSIF
+-ELSE
+-THEN 
+
+4.
+-IF
+-THEN
+-END IF
+
+5.
+declare
+v_populatie wf_countries.population%TYPE;
+begin
+select population into v_populatie
+from wf_countries
+where country_id=91;
+dbms_output.put_line(v_populatie);
+if v_populatie > 1000000000
+then
+dbms_output.put_line('Mai mare de 1 miliard');
+else
+dbms_output.put_line('Mai mica de 1 miliard');
+end if;
+select population into v_populatie
+from wf_countries
+where country_id=44;
+dbms_output.put_line(v_populatie);
+if v_populatie > 1000000000
+then
+dbms_output.put_line('Mai mare de 1 miliard');
+else
+dbms_output.put_line('Mai mica de 1 miliard');
+end if;
+end;
+
+
+6.
+DECLARE
+v_india wf_countries.population%TYPE ;
+v_nume wf_countries.COUNTRY_NAME%TYPE;
+BEGIN
+SELECT population,COUNTRY_NAME INTO v_india,v_nume
+FROM wf_countries
+WHERE country_id=86;
+IF v_india>1000000000 THEN
+DBMS_OUTPUT.PUT_LINE('populatia mai mare de 1.000.000.000 este ' ||v_nume);
+ELSIF  v_india>0 THEN
+DBMS_OUTPUT.PUT_LINE('populatia mai mare de 0 este ' ||v_nume);
+ELSIF  v_india=null  THEN
+DBMS_OUTPUT.PUT_LINE('populatia = null este ' ||v_nume);
+END IF;
+END;
+
+
+7.
+A. print C
+B. print B
+C. print A
+D. 
+
+Antarctica 672 NO NO C
+Iraq 964 YES NO A
+Spain 34 NO YES B
+United States 1 YES NO A
+
+8.The two numbers are equal
+NUMBER=NULL
+
+9.
+DECLARE
+ v_year NUMBER(20) := 1990;
+BEGIN
+ IF MOD(v_year, TO_NUMBER(400)) = 0 THEN
+ DBMS_OUTPUT.PUT_LINE('Leap year');
+ ELSIF MOD(v_year, TO_NUMBER(100)) = 0 THEN
+ DBMS_OUTPUT.PUT_LINE('Not a leap year');
+ ELSIF MOD(v_year, TO_NUMBER(4)) = 0 THEN
+ DBMS_OUTPUT.PUT_LINE('Leap year');
+ ELSE
+ DBMS_OUTPUT.PUT_LINE('Not a leap year');
+ END IF;
+END;

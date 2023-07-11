@@ -1,0 +1,37 @@
+Vocabulary
+- variables
+- parameters
+
+Try it
+
+1.
+A.string
+B.executable
+C.parameters
+
+2
+number_of_copies PLS_INTEGER;                         valid
+printer_name CONSTANT VARCHAR2(10);         invalid varchar can't be constant
+deliver_to VARCHAR2(10) := Johnson;                  invalid 'Johnson' -> must have ''
+by_when DATE := SYSDATE+1;                            valid
+
+3.
+A. The block will execute successfully and print ‘ fernandez’.
+
+4.
+
+5.
+DECLARE
+v_country_name varchar2(50):= 'United States of America';
+v_lowest_elevation number(6);
+v_highest_elevation number(6);
+BEGIN
+SELECT lowest_elevation, highest_elevation
+INTO v_lowest_elevation, v_highest_elevation
+FROM wf_countries
+WHERE country_name = v_country_name;
+DBMS_OUTPUT.PUT_LINE('The lowest elevation for '||v_country_name ||' is: '||v_lowest_elevation);
+DBMS_OUTPUT.PUT_LINE('The highest elevation for '||v_country_name ||' is: '||v_highest_elevation);
+END;
+
+
