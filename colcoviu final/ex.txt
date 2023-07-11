@@ -1,0 +1,46 @@
+14.3a
+SELECT *
+FROM Zboruri
+WHERE ((TIMEDIFF(sosire,plecare)>='01:00:00')
+        AND (TIMEDIFF(sosire,plecare)<='02:00:00' ))
+ORDER BY de_la ASC, de_la,sosire-plecare DESC 
+
+
+
+14.04
+b
+SELECT a.idan as pilot1 ,b.idan as pilot2
+FROM Certificare a
+JOIN Certificare b on (a.idan<b.idan)
+WHERE(a.idav=b.idav)
+
+14.05
+a
+SELECT DISTINCT a1.salariu
+FROM angajati a1
+ JOIN Certificare c1 ON c1.idan = a1.idan
+ JOIN Aeronave a3 ON a3.idav = c1.idav
+WHERE a1.salariu >= ALL (
+  select DISTINCT a2.salariu 
+  from angajati a2
+  JOIN Certificare c2 ON c2.idan = a2.idan
+  JOIN Aeronave a4 ON a4.idav = c2.idav) AND a3.numeav  LIKE'BOEING%';
+
+b
+
+SELECT DISTINCT  numeav
+FROM Zboruri, Aeronave
+WHERE(de_la IN ('Copenhaga') AND la IN('Cluj-Napoca') AND gama_croaziera>=distanta) 
+
+14.06
+a
+SELECT  max(salariu),min(salariu),round(avg(salariu)), idav
+FROM angajati ang join certificare c1 ON (ang.idan = c1.idan)
+group by idav
+
+
+b
+SELECT max(distanta) as distanta, la
+FROM Zboruri
+WHERE(de_la='Bucuresti' AND distanta>=ALL (SELECT max(distanta) FROM Zboruri where de_la='Bucuresti') )
+group by la

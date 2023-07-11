@@ -1,0 +1,145 @@
+
+14.03
+a)
+SELECT * 
+FROM Aeronave
+WHERE gama_croaziera BETWEEN 4100 AND 4800
+ORDER BY gama_croaziera DESC
+
+b)
+SELECT *
+FROM Zboruri
+WHERE ((sosire-plecare>=TO_DSINTERVAL('0 01:00:00')) AND (sosire-plecare<=TO_DSINTERVAL('0 02:00:00') )) 
+ORDER BY de_la ASC, de_la,sosire-plecare DESC 
+
+
+
+14.04
+a)--aceste join uri unesc tabelele angajati si aeronave cu ajutorul tabelului certficare
+SELECT * FROM Angajati
+JOIN Certificare ON Angajati.idan = Certificare.idan
+JOIN Aeronave ON Certificare.idav = Aeronave.idav
+WHERE numeav LIKE 'ATR%'
+
+b)
+SELECT UNIQUE a.idan as pilot1 ,b.idan as pilot2
+FROM Certificare a
+JOIN Certificare b on (a.idan<b.idan)--pentru a afisa perechile unice
+WHERE(a.idav=b.idav)
+
+14.05
+a)--join urile din ex fac posibila legatura dintre piloti si aeronave, al doilea join de dupa where selecteaza toti pilotii si ii compara cu fiecare din primul select pt a afla maximul
+SELECT DISTINCT a1.salariu
+FROM angajati a1
+ JOIN Certificare c1 ON c1.idan = a1.idan
+ JOIN Aeronave a1 ON a1.idav = c1.idav
+WHERE a1.salariu >= ALL (
+  select DISTINCT a2.salariu 
+  from angajati a2
+  JOIN Certificare c2 ON c2.idan = a2.idan
+  JOIN Aeronave a2 ON a2.idav = c2.idav) AND a1.numeav  LIKE'BOEING%';
+
+B)
+SELECT DISTINCT  numeav
+FROM Zboruri, Aeronave
+WHERE(de_la IN ('Copenhaga') AND la IN('Cluj-Napoca') AND gama_croaziera>=distanta) 
+
+14.06
+A)
+	
+
+b)
+SELECT max(distanta) as distanta, la
+FROM Zboruri
+WHERE(de_la='Bucuresti' )
+group by la
+
+14.07
+a)
+INSERT INTO Certificare (idan, idav) VALUES(1, 101);
+INSERT INTO Certificare (idan, idav) VALUES(1, 105);
+INSERT INTO Certificare (idan, idav) VALUES(1, 106);
+
+b)
+delete from Aeronave
+where idav NOT IN( SELECT idav FROM certificare)
+
+c)
+UPDATE Angajati a
+SET salariu=salariu+(salariu*(select count(idav)
+                     from certificare c   
+                     where c.idan=a.idan))/100
+WHERE idan IN (SELECT idan FROM certificare );
+
+14.08
+a)
+CREATE OR REPLACE TRIGGER certificare_piloti
+BEFORE INSERT
+      ON Certificare
+      FOR EACH ROW
+DECLARE
+      fct_angajati VARCHAR(15);
+BEGIN
+
+SELECT functie INTO fct_angajati
+FROM Angajati
+WHERE idan=:NEW.idan;
+
+IF(LOWER(fct_angajati) != LOWER('Pilot')) then
+    raise_application_error(-20001, 'Error: Nu se poate efectua inserarea!');
+END IF;
+END;
+
+--verificare trigger
+INSERT INTO Certificare (idan, idav) VALUES(2, 101);
+
+b)
+create or replace TRIGGER modifica_gama_croaziera
+BEFORE UPDATE
+   ON Aeronave
+   FOR EACH ROW
+DECLARE
+    numerator number;
+BEGIN
+    
+    Select COUNT(*) INTO numerator
+    From Certificare
+    Where idav=:NEW.idav;
+    
+    IF(numerator!=0 AND :new.gama_croaziera!=:old.gama_croaziera) then
+        raise_application_error(-20001, 'Error: Gama_croaziera nu poate suferi modificari!');
+    END IF;
+END;
+
+
+--testare trigger--
+
+UPDATE Aeronave
+set gama_croaziera=4500
+where numeav like 'ATR%'
+
+
+c)
+DROP VIEW PilotiAeronave
+
+CREATE VIEW PilotiAeronave AS
+SELECT a.idan, numean, functie, salariu, b.idav, numeav, gama_croaziera
+FROM Angajati a, Certificare c, Aeronave b
+WHERE c.idan = a.idan AND
+b.idav = c.idav
+
+
+CREATE OR REPLACE TRIGGER trigger3
+INSTEAD OF INSERT ON PilotiAeronave
+FOR EACH ROW
+BEGIN
+INSERT INTO Angajati(idan,numean,functie,salariu) VALUES(:new.idan,:new.numean,:new.functie,:new.salariu);
+INSERT INTO Aeronave(idav,numeav,gama_croaziera) VALUES(:new.idav,:new.numeav,:new.gama_croaziera);
+INSERT INTO Certificare(idan,idav) VALUES(:new.idan,:new.idav);
+END;
+
+INSERT INTO PilotiAeronave(idan,numean,functie,salariu,idav,numeav,gama_croaziera) VALUES (50,'Frincu Ionut','pilot',9900,50,'AudiA4',330);
+
+
+
+
